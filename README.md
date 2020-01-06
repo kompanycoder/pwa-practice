@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # PWA Training Labs
 
 This repo contains open-source training labs for building Progressive Web Apps.
@@ -15,8 +14,5 @@ If you find a bug or think something could be better, please file an issue!
 
 ## Note
 
-This is not an official Google product.
-=======
-# pwa-practice
+## pwa-practice
 repository to hold practiced offline exercises
->>>>>>> ec0aab8c23677640ea63b51c932f57ece8c24b65
