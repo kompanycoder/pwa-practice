@@ -18,34 +18,92 @@ limitations under the License.
 const app = (() => {
 
   function getImageName(country) {
+    // invoked the extra work function call to test capabilities
+    isSpain(country);
 
     // create and return a promise
+    country = country.toLowerCase();
+    const promiseOfImageName = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (country === 'spain' || country === 'chile' || country === 'peru') {
+          resolve(country + '.png');
+        } else {
+          reject(Error('Didn\'t receive a valid country name!'));
+        }
+      }, 1000);
+    });
+    console.log(promiseOfImageName);
+    return promiseOfImageName; 
 
   }
 
   function isSpain(country) {
-
+    country = country.toLowerCase();
+    console.log("checking if country is :" + country);
     // Optional - create and return a promise that resolves if input is "Spain"
+    const promiseOfSpain = new Promise((resolve, reject)=>{
+      if (country === 'spain'){
+        resolve(country+ '.png');
+      } else {
+        reject(Error('Dude that wasn\'t spain. read again...'));
+      }
+    });
+    console.log(promiseOfSpain);
+    return promiseOfSpain;
 
   }
 
   function flagChain(country) {
 
     // use the promise
+    return getImageName(country).catch(fallbackName)
+            .then(fetchFlag)
+            .then(processFlag)
+            .then(appendFlag)
+            .catch(logError);
 
   }
 
+  
   function allFlags(promiseList) {
 
     // use promise.all
+    console.log(promiseList);
+    return Promise.all(promiseList).then((result)=>{
+      // console.log(result);
+      return result;
+    }).catch((err)=>{
+      // return Error('found an err')
+      return false;
+    });
 
   }
 
 
   // call the allFlags function
-
+    var promises = [
+      getImageName('Spain'),
+      getImageName('Chile'),
+      // for testing purposes
+      getImageName('Hello world')
+    ];
+    
+    allFlags(promises).then(function(result) {
+      console.log(result);
+    });
 
   // use Promise.race
+    const promise1 = new Promise((resolve, reject) => {
+      setTimeout(resolve, 500, 'one');
+    });
+    
+    const promise2 = new Promise((resolve, reject) => {
+      setTimeout(reject, 100, 'two');
+    });
+    
+    Promise.race([promise1, promise2])
+    .then(logSuccess)
+    .catch(logError);
 
 
   /* Helper functions */
