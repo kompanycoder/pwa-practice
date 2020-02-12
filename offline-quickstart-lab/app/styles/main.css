@@ -28,6 +28,13 @@ body {
   min-height: 100vh;
 }
 
+.banner {
+  align-content: center;
+  display: none;
+  justify-content: center;
+  width: 100%;
+}
+
 header {
   background-color: #FF9800;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
